@@ -40,8 +40,12 @@
     .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
     .current-price { font-size: 19px; font-weight: 700; color: var(--gold); }
     .old-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
-    .selector-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-    .size-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 8px; margin-bottom: 12px; font-size: 13px; outline: none; }
+    
+    .selection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .selector-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+    .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 7px 8px; font-size: 13px; outline: none; }
+    .custom-select:focus { border-color: var(--gold); }
+
     .add-to-cart-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: auto; }
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
     .modal.active { display: flex; }
@@ -128,13 +132,15 @@
         <span class="current-price" id="zoom-price"></span>
         <span class="old-price" id="zoom-old-price"></span>
       </div>
-      <div style="margin-bottom:12px;">
-        <div class="selector-label">কালার পছন্দ করুন:</div>
-        <div id="zoom-colors" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
-      </div>
-      <div style="margin-bottom:14px;">
-        <div class="selector-label">সাইজ (বয়স অনুযায়ী):</div>
-        <select class="size-select" id="zoom-size-select"></select>
+      <div class="selection-grid">
+        <div>
+          <div class="selector-label">কালার নির্বাচন:</div>
+          <select class="custom-select" id="zoom-color-select"></select>
+        </div>
+        <div>
+          <div class="selector-label">সাইজ (বয়স):</div>
+          <select class="custom-select" id="zoom-size-select"></select>
+        </div>
       </div>
       <button class="add-to-cart-btn" id="zoom-add-btn">কার্টে যোগ করুন</button>
     </div>
@@ -173,7 +179,7 @@
       <details style="margin-bottom:16px;">
         <summary style="color:var(--gold-light); cursor:pointer; font-weight:600; margin-bottom:8px;">নতুন প্রোডাক্ট যোগ করুন</summary>
         <input type="text" id="new-prod-name" class="cart-input" placeholder="প্রোডাক্টের নাম">
-        <select id="new-prod-cat" class="size-select">
+        <select id="new-prod-cat" class="custom-select" style="margin-bottom:10px;">
           <option value="ছেলে বাবু">ছেলে বাবু</option>
           <option value="মেয়ে বাবু">মেয়ে বাবু</option>
           <option value="নতুন কালেকশন">নতুন কালেকশন</option>
@@ -181,7 +187,7 @@
         <input type="number" id="new-prod-price" class="cart-input" placeholder="বিক্রয় মূল্য (৳)">
         <input type="number" id="new-prod-oldprice" class="cart-input" placeholder="আগের মূল্য (৳)">
         <input type="text" id="new-prod-img" class="cart-input" placeholder="ছবির ডিরেক্ট URL (Image Link)">
-        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল)">
+        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল, হলুদ)">
         <button class="add-to-cart-btn" onclick="addNewProduct()">প্রোডাক্ট যুক্ত করুন</button>
       </details>
 
@@ -211,7 +217,6 @@
 
     let cart = [];
     let selectedCategory = 'সব';
-    let currentPreviewId = null;
 
     function applySettings() {
       document.getElementById('site-title').innerText = siteSettings.name;
@@ -239,10 +244,22 @@
               <span class="current-price">৳${p.price}</span>
               <span class="old-price">৳${p.oldPrice}</span>
             </div>
-            <div class="selector-label">সাইজ নির্বাচন করুন:</div>
-            <select class="size-select" id="size-select-${p.id}">
-              ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
-            </select>
+            
+            <div class="selection-grid">
+              <div>
+                <div class="selector-label">কালার:</div>
+                <select class="custom-select" id="color-select-${p.id}">
+                  ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <div class="selector-label">সাইজ (বয়স):</div>
+                <select class="custom-select" id="size-select-${p.id}">
+                  ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+
             <button class="add-to-cart-btn" onclick="addToCartDirect(${p.id})">
               <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
             </button>
@@ -262,7 +279,7 @@
     function addToCartDirect(id) {
       const p = products.find(x => x.id === id);
       const size = document.getElementById(`size-select-${id}`).value;
-      const color = p.colors[0] || "স্ট্যান্ডার্ড";
+      const color = document.getElementById(`color-select-${id}`).value;
       addItemToCart(p, size, color);
     }
 
@@ -293,7 +310,7 @@
           <img src="${item.image}">
           <div style="flex-grow:1;">
             <div style="font-weight:600; font-size:14px;">${item.name}</div>
-            <div style="font-size:12px; color:var(--text-muted);">সাইজ: ${item.size} | কালার: ${item.color}</div>
+            <div style="font-size:12px; color:var(--text-muted);">কালার: ${item.color} | সাইজ: ${item.size}</div>
             <div style="font-size:13px; color:var(--gold);">৳${item.price} × ${item.qty}</div>
           </div>
           <button onclick="removeCartItem(${idx})" style="background:none; border:none; color:#e02424; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
@@ -310,39 +327,23 @@
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
     function openZoomPreview(id) {
-      currentPreviewId = id;
       const p = products.find(x => x.id === id);
       document.getElementById('zoom-img').src = p.image;
       document.getElementById('zoom-title').innerText = p.name;
       document.getElementById('zoom-price').innerText = `৳${p.price}`;
       document.getElementById('zoom-old-price').innerText = `৳${p.oldPrice}`;
       
-      const colorBox = document.getElementById('zoom-colors');
-      colorBox.innerHTML = p.colors.map((c, i) => `
-        <button style="background:${i === 0 ? 'var(--gold)' : '#222'}; color:${i === 0 ? '#000' : '#fff'}; border:1px solid var(--border-color); padding:4px 10px; border-radius:4px; font-size:12px; cursor:pointer;" onclick="selectPreviewColor('${c}', this)">${c}</button>
-      `).join('');
+      const colorSelect = document.getElementById('zoom-color-select');
+      colorSelect.innerHTML = p.colors.map(c => `<option value="${c}">${c}</option>`).join('');
 
       const sizeSelect = document.getElementById('zoom-size-select');
       sizeSelect.innerHTML = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
 
       document.getElementById('zoom-add-btn').onclick = function() {
-        const selSize = sizeSelect.value;
-        const activeColorBtn = colorBox.querySelector('button[style*="var(--gold)"]');
-        const selColor = activeColorBtn ? activeColorBtn.innerText : p.colors[0];
-        addItemToCart(p, selSize, selColor);
+        addItemToCart(p, sizeSelect.value, colorSelect.value);
         closeModal('preview-modal');
       };
       document.getElementById('preview-modal').classList.add('active');
-    }
-
-    function selectPreviewColor(colorName, btn) {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('button').forEach(b => {
-        b.style.background = '#222';
-        b.style.color = '#fff';
-      });
-      btn.style.background = 'var(--gold)';
-      btn.style.color = '#000';
     }
 
     function confirmOrderWhatsApp() {
@@ -360,7 +361,7 @@
       cart.forEach((item, i) => {
         const total = item.price * item.qty;
         grandTotal += total;
-        msg += `${i+1}. ${item.name} (${item.size}, কালার: ${item.color})\n    পরিমাণ: ${item.qty} টি | মূল্য: ৳${total}\n`;
+        msg += `${i+1}. ${item.name}\n    কালার: ${item.color} | সাইজ: ${item.size}\n    পরিমাণ: ${item.qty} টি | মূল্য: ৳${total}\n`;
       });
       msg += `\n🚚 ডেলিভারি চার্জ: সম্পূর্ণ ফ্রি\n`;
       msg += `💰 *সর্বমোট বিল:* ৳${grandTotal}\n\nদ্রুত অর্ডারটি কনফার্ম করুন!`;
@@ -379,7 +380,6 @@
       }, 1500);
     }
 
-    // অ্যাডমিন অথেনটিকেশন চেক
     function checkHashRoute() {
       if (window.location.hash === '#admin') {
         if (sessionStorage.getItem('rufayda_admin_auth') === 'true') {
