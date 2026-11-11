@@ -55,6 +55,24 @@
     .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 8px; font-size: 13px; outline: none; margin-bottom: 12px; }
     .add-to-cart-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: auto; }
     
+    /* ফুটার ও ট্রাস্ট সেকশন */
+    .trust-section { background: #111116; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 40px 16px; margin-top: 50px; }
+    .trust-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .trust-card { background: #17171d; border: 1px solid #282832; border-radius: 10px; padding: 20px; text-align: center; }
+    .trust-card i { font-size: 32px; color: var(--gold); margin-bottom: 12px; }
+    .trust-card h4 { font-size: 17px; margin-bottom: 8px; color: #fff; }
+    .trust-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+
+    .about-section { max-width: 900px; margin: 40px auto 20px; padding: 24px; background: radial-gradient(circle at top, #1c1a14 0%, #111115 100%); border: 1px solid var(--border-color); border-radius: 12px; text-align: center; }
+    .about-section h3 { font-size: 24px; color: var(--gold); margin-bottom: 12px; }
+    .about-section p { font-size: 15px; color: #d1d1d6; line-height: 1.8; margin-bottom: 20px; }
+    
+    .footer-contact-box { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .wa-btn-large { background: #25D366; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 30px; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: 0.2s; }
+    .wa-btn-large:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+
+    footer { text-align: center; padding: 20px; font-size: 13px; color: var(--text-muted); border-top: 1px solid #222; }
+
     /* মোডাল স্টাইল */
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
     .modal.active { display: flex; }
@@ -110,6 +128,54 @@
   <main class="container">
     <div class="product-grid" id="product-container"></div>
   </main>
+
+  <!-- আমাদের প্রডাক্ট কেনো নিবেন ও বিশ্বাস অর্জনের সেকশন -->
+  <section class="trust-section">
+    <div style="text-align:center; margin-bottom:30px;">
+      <h2 style="color:var(--gold); font-size:26px; margin-bottom:8px;">কেন রুফাইদা অনলাইন শপ থেকেই কিনবেন?</h2>
+      <p style="color:var(--text-muted); font-size:14px;">আপনার সন্তানের সুস্থতা এবং আপনার নিশ্চিন্ত শপিং আমাদের অঙ্গীকার</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <h4>১০০% প্রিমিয়াম ফেব্রিক</h4>
+        <p>শিশুদের কোমল ত্বকের কথা মাথায় রেখে আমরা প্রতিটি পোশাকে নিশ্চিত করি সর্বোচ্চ আরামদায়ক ও ব্রিদেবল পিওর কটন ফেব্রিক।</p>
+      </div>
+      <div class="trust-card">
+        <i class="fa-solid fa-box-open"></i>
+        <h4>দেখে চেক করে নেওয়ার সুবিধা</h4>
+        <p>ডেলিভারি ম্যানের সামনে পার্সেল খুলে কোয়ালিটি ও সাইজ দেখে নিশ্চিত হয়ে মূল্য পরিশোধ করার শতভাগ নিশ্চয়তা।</p>
+      </div>
+      <div class="trust-card">
+        <i class="fa-solid fa-truck-ramp-box"></i>
+        <h4>ফ্রি ডেলিভারি ও দ্রুত সেবা</h4>
+        <p>সারা বাংলাদেশে কোনো প্রকার ডেলিভারি চার্জ ছাড়া ঘরে বসেই দ্রুততম সময়ে অরিজিনাল পণ্য বুঝে নিন।</p>
+      </div>
+      <div class="trust-card">
+        <i class="fa-solid fa-tags"></i>
+        <h4>সেরা সাশ্রয়ী অফার</h4>
+        <p>গুণগত মান বজায় রেখে সবসময় পরিবারের বাজেটের কথা ভেবে সেরা অফার ও কম্বো প্যাকেজ উপহার দিই।</p>
+      </div>
+    </div>
+
+    <!-- শপ সম্পর্কে বিশেষ আস্থা তৈরির বার্তা -->
+    <div class="about-section">
+      <h3><i class="fa-solid fa-heart" style="color:#e02424; margin-right:6px;"></i> রুফাইদা অনলাইন শপ সম্পর্কে কিছু কথা</h3>
+      <p>
+        "একটি শিশুর হাসিমুখই পরিবারের সবচেয়ে বড় আনন্দ। <strong>রুফাইদা অনলাইন শপ</strong> শুধুমাত্র একটি ব্যবসা নয়, এটি প্রতিটি অভিভাবকের প্রতি ভালোবাসার ও বিশ্বাসের এক অনন্য মেলবন্ধন। আমরা জানি আপনার ছোট্ট সোনার ত্বকে একটু অস্বস্তিও আপনাকে কতটা চিন্তিত করে। তাই আমরা প্রতিটি সুতো, ডিজাইন এবং ফেব্রিক নিজের সন্তানের পোশাকের মতোই পরম যত্নে যাচাই করে আপনাদের কাছে পৌঁছে দিই। আমাদের কাছে ছবি যা দেখবেন, বাস্তবে পার্সেল হাতে পেয়ে তার চেয়েও বেশি সন্তুষ্ট হবেন—ইনশাআল্লাহ।"
+      </p>
+      <div class="footer-contact-box">
+        <span style="color:var(--gold-light); font-size:15px; font-weight:600;">যেকোনো জিজ্ঞাসা বা সরাসরি পরামর্শের জন্য হোয়াটসঅ্যাপে লিখুন:</span>
+        <a id="footer-wa-link" href="https://wa.me/8801874734373" target="_blank" class="wa-btn-large">
+          <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i> হোয়াটসঅ্যাপে কথা বলুন (01874734373)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="cur-year"></span> রুফাইদা অনলাইন শপ। সর্বস্বত্ব সংরক্ষিত। হটলাইন: <span id="footer-hotline">01335976268</span></p>
+  </footer>
 
   <div class="floating-cart" onclick="openCart()">
     <i class="fa-solid fa-bag-shopping"></i> <span id="floating-cart-total">০ টি প্রোডাক্ট</span>
@@ -301,7 +367,17 @@
     function applySettings() {
       document.getElementById('site-title').innerText = siteSettings.name;
       document.getElementById('hotline-text').innerText = siteSettings.hotline;
+      document.getElementById('footer-hotline').innerText = siteSettings.hotline;
       document.getElementById('delivery-text').innerText = siteSettings.delivery;
+      
+      const waClean = siteSettings.whatsapp.replace(/[^0-9]/g, '');
+      const waNumber = waClean.startsWith('88') ? waClean : `88${waClean}`;
+      const footerWa = document.getElementById('footer-wa-link');
+      if (footerWa) {
+        footerWa.href = `https://wa.me/${waNumber}`;
+        footerWa.innerHTML = `<i class="fa-brands fa-whatsapp" style="font-size:22px;"></i> হোয়াটসঅ্যাপে কথা বলুন (${siteSettings.whatsapp})`;
+      }
+      document.getElementById('cur-year').innerText = new Date().getFullYear();
     }
 
     function renderProducts() {
@@ -535,7 +611,6 @@
       }
     }
 
-    // সরাসরি ছবি লিংকসহ হোয়াটসঅ্যাপ অর্ডার ফাংশন
     function confirmOrderWhatsApp() {
       const name = document.getElementById('cust-name').value.trim();
       const phone = document.getElementById('cust-phone').value.trim();
