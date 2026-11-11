@@ -18,39 +18,52 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', sans-serif; }
     body { background-color: var(--bg-dark); color: var(--text-main); }
-    .top-bar { background: linear-gradient(90deg, #111, #222, #111); border-bottom: 1px solid var(--border-color); padding: 8px 16px; font-size: 14px; text-align: center; color: var(--gold-light); }
+    .top-bar { background: linear-gradient(90deg, #111, #222, #111); border-bottom: 1px solid var(--border-color); padding: 8px 16px; font-size: 13.5px; text-align: center; color: var(--gold-light); }
+    .special-offer-badge { background: #e02424; color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: bold; margin-left: 6px; }
     header { background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
     .logo { font-size: 24px; font-weight: 700; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 8px; }
     .cart-btn { background: #202026; border: 1px solid var(--border-color); color: var(--gold); padding: 8px 16px; border-radius: 20px; cursor: pointer; position: relative; font-size: 15px; }
     .cart-badge { position: absolute; top: -6px; right: -6px; background: #e02424; color: #fff; font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 50%; }
-    .banner { text-align: center; padding: 40px 16px 20px; background: radial-gradient(circle at center, #1f1d18 0%, #0a0a0c 70%); border-bottom: 1px solid var(--border-color); }
-    .banner h1 { font-size: 32px; color: var(--gold); margin-bottom: 8px; }
-    .banner p { color: var(--text-muted); font-size: 16px; }
+    .banner { text-align: center; padding: 36px 16px 20px; background: radial-gradient(circle at center, #1f1d18 0%, #0a0a0c 70%); border-bottom: 1px solid var(--border-color); }
+    .banner h1 { font-size: 32px; color: var(--gold); margin-bottom: 6px; }
+    .banner p { color: var(--text-muted); font-size: 15px; }
+    .offer-banner { background: rgba(212, 175, 55, 0.1); border: 1px dashed var(--gold); padding: 8px 14px; border-radius: 8px; display: inline-block; margin-top: 10px; color: var(--gold-light); font-weight: 600; font-size: 14px; }
+    
     .category-bar { display: flex; justify-content: center; gap: 10px; margin: 24px 16px; flex-wrap: wrap; }
     .cat-btn { background: #1c1c22; color: var(--text-main); border: 1px solid #333; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-size: 14px; }
     .cat-btn.active { background: var(--gold); color: #000; font-weight: 600; border-color: var(--gold); }
+    
     .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
     .product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-    .card-img-wrap { position: relative; width: 100%; height: 260px; cursor: pointer; background: #111; }
-    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-img-wrap { position: relative; width: 100%; height: 260px; cursor: pointer; background: #111; overflow: hidden; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .card-img-wrap:hover img { transform: scale(1.05); }
     .badge { position: absolute; top: 10px; left: 10px; background: #e02424; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 4px; }
     .card-body { padding: 14px; display: flex; flex-direction: column; flex-grow: 1; }
     .card-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; cursor: pointer; }
-    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-    .current-price { font-size: 19px; font-weight: 700; color: var(--gold); }
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+    .current-price { font-size: 20px; font-weight: 700; color: var(--gold); }
     .old-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
     
-    .selection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-    .selector-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
-    .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 7px 8px; font-size: 13px; outline: none; }
-    .custom-select:focus { border-color: var(--gold); }
+    .selector-label { font-size: 12px; color: var(--gold-light); margin-bottom: 6px; font-weight: 600; }
+    .color-picker-box { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .color-chip { background: #22222a; border: 1px solid #444; border-radius: 4px; padding: 4px 8px; font-size: 12px; cursor: pointer; user-select: none; display: flex; align-items: center; gap: 4px; color: #bbb; transition: 0.2s; }
+    .color-chip.selected { background: var(--gold); color: #000; font-weight: bold; border-color: var(--gold); }
+    .selected-summary { font-size: 12px; color: #38bdf8; margin-bottom: 10px; min-height: 18px; font-weight: 500; }
 
+    .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 8px; font-size: 13px; outline: none; margin-bottom: 12px; }
     .add-to-cart-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: auto; }
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+    
+    /* জুম মোডাল স্টাইল */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
     .modal.active { display: flex; }
-    .modal-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; position: relative; }
-    .close-btn { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; }
+    .modal-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; position: relative; }
+    .close-btn { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 22px; color: var(--text-muted); cursor: pointer; }
+    
+    .zoom-container { width: 100%; height: 320px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #111; cursor: crosshair; position: relative; }
+    .zoom-container img { width: 100%; height: 100%; object-fit: contain; transform-origin: center center; transition: transform 0.1s ease-out; }
+
     .cart-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #282830; }
     .cart-item img { width: 55px; height: 55px; object-fit: cover; border-radius: 6px; }
     .cart-input { width: 100%; background: #22222a; border: 1px solid #444; border-radius: 6px; padding: 10px; color: #fff; margin-bottom: 10px; outline: none; }
@@ -61,7 +74,8 @@
 <body>
 
   <div class="top-bar">
-    <i class="fa-solid fa-truck-fast"></i> <span id="delivery-text">সারা বাংলাদেশে হোম ডেলিভারি সম্পূর্ণ ফ্রি!</span> | যোগাযোগ: <span id="hotline-text">01335976268</span>
+    <i class="fa-solid fa-truck-fast"></i> <span id="delivery-text">সারা বাংলাদেশে হোম ডেলিভারি সম্পূর্ণ ফ্রি!</span> 
+    <span class="special-offer-badge">মেগা অফার: ৩ সেট ৯৯৯৳</span> | যোগাযোগ: <span id="hotline-text">01335976268</span>
   </div>
 
   <header>
@@ -75,6 +89,7 @@
   <div class="banner">
     <h1 id="banner-head">বাচ্চাদের এক্সক্লুসিভ কালেকশন</h1>
     <p>১ থেকে ৮ বছরের সেরা ও আরামদায়ক পোশাকের সমাহার</p>
+    <div class="offer-banner"><i class="fa-solid fa-fire"></i> ৩টি যেকোনো প্রোডাক্ট কার্টে নিলেই স্পেশাল অফার ৯৯৯ টাকা + ফ্রি ডেলিভারি!</div>
   </div>
 
   <div class="category-bar">
@@ -98,14 +113,27 @@
       <button class="close-btn" onclick="closeModal('cart-modal')"><i class="fa-solid fa-xmark"></i></button>
       <h3 style="color:var(--gold); margin-bottom:12px;">আপনার শপিং কার্ট</h3>
       <div id="cart-items-list" style="margin-bottom:12px;"></div>
-      <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:16px;">
-        <span>সর্বমোট:</span>
-        <span style="color:var(--gold); font-size:18px;" id="cart-total-price">৳০</span>
+      
+      <div id="cart-pricing-box" style="background:#1d1d24; padding:12px; border-radius:8px; margin-bottom:14px; border:1px solid #333;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span>মোট আইটেম:</span>
+          <span id="cart-total-qty">০ টি</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span>ডেলিভারি চার্জ:</span>
+          <span style="color:#25D366; font-weight:bold;">সম্পূর্ণ ফ্রি (৳০)</span>
+        </div>
+        <div id="offer-tag" style="display:none; color:#e02424; font-weight:bold; font-size:13px; margin-bottom:6px;">🎉 ৩ সেট অফার অ্যাপ্লাইড (৳৯৯৯)!</div>
+        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px; border-top:1px solid #444; padding-top:6px;">
+          <span>সর্বমোট বিল:</span>
+          <span style="color:var(--gold);" id="cart-total-price">৳০</span>
+        </div>
       </div>
-      <h4 style="font-size:14px; margin-bottom:8px; color:var(--gold-light);">ডেলিভারি তথ্য পূরণ করুন:</h4>
+
+      <h4 style="font-size:14px; margin-bottom:8px; color:var(--gold-light);">অর্ডার করার তথ্য:</h4>
       <input type="text" id="cust-name" class="cart-input" placeholder="আপনার পুরো নাম">
       <input type="tel" id="cust-phone" class="cart-input" placeholder="মোবাইল নম্বর">
-      <textarea id="cust-address" class="cart-input" style="height:60px;" placeholder="সম্পূর্ণ ঠিকানা (বাসা, রোড, থানা, জেলা)"></textarea>
+      <textarea id="cust-address" class="cart-input" style="height:60px;" placeholder="সম্পূর্ণ ডেলিভারি ঠিকানা (বাসা/রোড, থানা, জেলা)"></textarea>
       <button class="confirm-btn" onclick="confirmOrderWhatsApp()">
         <i class="fa-brands fa-whatsapp"></i> অর্ডার কনফার্ম করুন
       </button>
@@ -122,26 +150,27 @@
     </div>
   </div>
 
-  <!-- প্রোডাক্ট জুম প্রিভিউ মোডাল -->
+  <!-- জুম প্রিভিউ মোডাল -->
   <div class="modal" id="preview-modal">
     <div class="modal-box">
       <button class="close-btn" onclick="closeModal('preview-modal')"><i class="fa-solid fa-xmark"></i></button>
-      <img id="zoom-img" src="" alt="প্রোডাক্ট প্রিভিউ" style="width:100%; max-height:280px; object-fit:cover; border-radius:8px; margin-bottom:12px;">
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px; text-align:center;"><i class="fa-solid fa-magnifying-glass-plus"></i> ছবির উপর মাউস বা হাত নাড়াচাড়া করে জুম ইন/আউট করুন</div>
+      <div class="zoom-container" id="zoom-container" onmousemove="zoomMove(event)" onmouseleave="zoomReset()">
+        <img id="zoom-img" src="" alt="প্রোডাক্ট প্রিভিউ">
+      </div>
       <h3 id="zoom-title" style="color:var(--gold); margin-bottom:6px;"></h3>
       <div class="price-row">
         <span class="current-price" id="zoom-price"></span>
         <span class="old-price" id="zoom-old-price"></span>
       </div>
-      <div class="selection-grid">
-        <div>
-          <div class="selector-label">কালার নির্বাচন:</div>
-          <select class="custom-select" id="zoom-color-select"></select>
-        </div>
-        <div>
-          <div class="selector-label">সাইজ (বয়স):</div>
-          <select class="custom-select" id="zoom-size-select"></select>
-        </div>
-      </div>
+      
+      <div class="selector-label">কালার পছন্দ করুন (সর্বোচ্চ ৩টি):</div>
+      <div class="color-picker-box" id="zoom-color-chips"></div>
+      <div class="selected-summary" id="zoom-color-summary"></div>
+
+      <div class="selector-label">সাইজ (বয়স অনুযায়ী):</div>
+      <select class="custom-select" id="zoom-size-select"></select>
+
       <button class="add-to-cart-btn" id="zoom-add-btn">কার্টে যোগ করুন</button>
     </div>
   </div>
@@ -187,7 +216,7 @@
         <input type="number" id="new-prod-price" class="cart-input" placeholder="বিক্রয় মূল্য (৳)">
         <input type="number" id="new-prod-oldprice" class="cart-input" placeholder="আগের মূল্য (৳)">
         <input type="text" id="new-prod-img" class="cart-input" placeholder="ছবির ডিরেক্ট URL (Image Link)">
-        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল, হলুদ)">
+        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল, হলুদ, কালো)">
         <button class="add-to-cart-btn" onclick="addNewProduct()">প্রোডাক্ট যুক্ত করুন</button>
       </details>
 
@@ -198,9 +227,9 @@
 
   <script>
     const defaultProducts = [
-      { id: 1, name: "প্রিমিয়াম বেবি পার্টি ফ্রক", category: "মেয়ে বাবু", price: 850, oldPrice: 1100, image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500&q=80", colors: ["গোলাপী", "মেরুন", "সাদা"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 2, name: "ছেলেদের প্রিন্টেড শার্ট ও প্যান্ট সেট", category: "ছেলে বাবু", price: 950, oldPrice: 1250, image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&q=80", colors: ["গাঢ় নীল", "কালো", "ছাই"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 3, name: "৩-পিস এক্সক্লুসিভ কটন সেট", category: "নতুন কালেকশন", price: 1200, oldPrice: 1500, image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=500&q=80", colors: ["হলুদ", "নীল", "সবুজ"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] }
+      { id: 1, name: "প্রিমিয়াম বেবি পার্টি ফ্রক", category: "মেয়ে বাবু", price: 650, oldPrice: 900, image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&q=80", colors: ["গোলাপী", "মেরুন", "সাদা", "হলুদ"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
+      { id: 2, name: "ছেলেদের প্রিন্টেড শার্ট ও প্যান্ট সেট", category: "ছেলে বাবু", price: 650, oldPrice: 850, image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&q=80", colors: ["গাঢ় নীল", "কালো", "ছাই", "লাল"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
+      { id: 3, name: "৩-পিস এক্সক্লুসিভ কটন সেট", category: "নতুন কালেকশন", price: 700, oldPrice: 950, image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=700&q=80", colors: ["হলুদ", "নীল", "সবুজ", "কমলা"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] }
     ];
 
     let products = JSON.parse(localStorage.getItem('rufayda_products')) || defaultProducts;
@@ -217,6 +246,7 @@
 
     let cart = [];
     let selectedCategory = 'সব';
+    let cardSelectedColors = {}; // কার্ড প্রতি সিলেক্টেড কালার ট্র্যাক রাখতে
 
     function applySettings() {
       document.getElementById('site-title').innerText = siteSettings.name;
@@ -230,6 +260,9 @@
       const filtered = selectedCategory === 'সব' ? products : products.filter(p => p.category === selectedCategory);
 
       filtered.forEach(p => {
+        if (!cardSelectedColors[p.id]) {
+          cardSelectedColors[p.id] = [p.colors[0]];
+        }
         const discount = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -245,20 +278,20 @@
               <span class="old-price">৳${p.oldPrice}</span>
             </div>
             
-            <div class="selection-grid">
-              <div>
-                <div class="selector-label">কালার:</div>
-                <select class="custom-select" id="color-select-${p.id}">
-                  ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
-                </select>
-              </div>
-              <div>
-                <div class="selector-label">সাইজ (বয়স):</div>
-                <select class="custom-select" id="size-select-${p.id}">
-                  ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
-                </select>
-              </div>
+            <div class="selector-label">কালার নির্বাচন করুন (সর্বোচ্চ ৩টি):</div>
+            <div class="color-picker-box" id="card-colors-${p.id}">
+              ${p.colors.map(c => `
+                <span class="color-chip ${cardSelectedColors[p.id].includes(c) ? 'selected' : ''}" onclick="toggleColorSelection(${p.id}, '${c}', this)">
+                  <i class="fa-solid fa-check" style="font-size:10px; display:${cardSelectedColors[p.id].includes(c) ? 'inline' : 'none'};"></i> ${c}
+                </span>
+              `).join('')}
             </div>
+            <div class="selected-summary" id="card-color-summary-${p.id}">সিলেক্টেড: ${cardSelectedColors[p.id].join(', ')}</div>
+
+            <div class="selector-label">সাইজ (বয়স অনুযায়ী):</div>
+            <select class="custom-select" id="size-select-${p.id}">
+              ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+            </select>
 
             <button class="add-to-cart-btn" onclick="addToCartDirect(${p.id})">
               <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
@@ -267,6 +300,45 @@
         `;
         container.appendChild(card);
       });
+    }
+
+    function toggleColorSelection(prodId, color, chipElem) {
+      if (!cardSelectedColors[prodId]) cardSelectedColors[prodId] = [];
+      let list = cardSelectedColors[prodId];
+
+      if (list.includes(color)) {
+        if (list.length === 1) {
+          alert("কমপক্ষে ১টি কালার সিলেক্ট থাকতে হবে!");
+          return;
+        }
+        cardSelectedColors[prodId] = list.filter(c => c !== color);
+      } else {
+        if (list.length >= 3) {
+          alert("আপনি সর্বোচ্চ ৩টি কালার একসাথে বাছাই করতে পারবেন!");
+          return;
+        }
+        cardSelectedColors[prodId].push(color);
+      }
+
+      // UI আপডেট
+      const parent = chipElem.parentElement;
+      const chips = parent.querySelectorAll('.color-chip');
+      chips.forEach(c => {
+        const text = c.innerText.trim();
+        const icon = c.querySelector('i');
+        if (cardSelectedColors[prodId].includes(text)) {
+          c.classList.add('selected');
+          if (icon) icon.style.display = 'inline';
+        } else {
+          c.classList.remove('selected');
+          if (icon) icon.style.display = 'none';
+        }
+      });
+
+      const summaryElem = document.getElementById(`card-color-summary-${prodId}`);
+      if (summaryElem) {
+        summaryElem.innerText = `সিলেক্টেড: ${cardSelectedColors[prodId].join(', ')}`;
+      }
     }
 
     function filterCategory(cat, btn) {
@@ -279,26 +351,38 @@
     function addToCartDirect(id) {
       const p = products.find(x => x.id === id);
       const size = document.getElementById(`size-select-${id}`).value;
-      const color = document.getElementById(`color-select-${id}`).value;
-      addItemToCart(p, size, color);
+      const colors = (cardSelectedColors[id] && cardSelectedColors[id].length) ? cardSelectedColors[id] : [p.colors[0]];
+      addItemToCart(p, size, colors.join(' + '));
     }
 
-    function addItemToCart(prod, size, color) {
-      const existing = cart.find(c => c.id === prod.id && c.size === size && c.color === color);
+    function addItemToCart(prod, size, colorStr) {
+      const existing = cart.find(c => c.id === prod.id && c.size === size && c.color === colorStr);
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ id: prod.id, name: prod.name, price: prod.price, image: prod.image, size, color, qty: 1 });
+        cart.push({ id: prod.id, name: prod.name, price: prod.price, image: prod.image, size, color: colorStr, qty: 1 });
       }
       updateCartUI();
     }
 
     function updateCartUI() {
       const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      let calculatedPrice = 0;
+      const offerTag = document.getElementById('offer-tag');
+
+      // ৩ সেট ৯৯৯ টাকা স্পেশাল অফার লজিক
+      if (totalCount === 3) {
+        calculatedPrice = 999;
+        if (offerTag) offerTag.style.display = 'block';
+      } else {
+        calculatedPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        if (offerTag) offerTag.style.display = 'none';
+      }
+
       document.getElementById('cart-count').innerText = totalCount;
       document.getElementById('floating-cart-total').innerText = `${totalCount} টি প্রোডাক্ট`;
-      document.getElementById('cart-total-price').innerText = `৳${totalPrice}`;
+      document.getElementById('cart-total-qty').innerText = `${totalCount} টি`;
+      document.getElementById('cart-total-price').innerText = `৳${calculatedPrice}`;
 
       const list = document.getElementById('cart-items-list');
       if (cart.length === 0) {
@@ -310,8 +394,9 @@
           <img src="${item.image}">
           <div style="flex-grow:1;">
             <div style="font-weight:600; font-size:14px;">${item.name}</div>
-            <div style="font-size:12px; color:var(--text-muted);">কালার: ${item.color} | সাইজ: ${item.size}</div>
-            <div style="font-size:13px; color:var(--gold);">৳${item.price} × ${item.qty}</div>
+            <div style="font-size:12px; color:var(--gold-light);">কালার: ${item.color}</div>
+            <div style="font-size:12px; color:var(--text-muted);">সাইজ: ${item.size}</div>
+            <div style="font-size:13px; color:var(--gold); margin-top:2px;">৳${item.price} × ${item.qty}</div>
           </div>
           <button onclick="removeCartItem(${idx})" style="background:none; border:none; color:#e02424; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
         </div>
@@ -326,24 +411,81 @@
     function openCart() { document.getElementById('cart-modal').classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
+    // জুম ইন ও জুম আউট ফাংশন
+    let modalSelectedColors = [];
     function openZoomPreview(id) {
       const p = products.find(x => x.id === id);
-      document.getElementById('zoom-img').src = p.image;
+      const img = document.getElementById('zoom-img');
+      img.src = p.image;
+      zoomReset();
+
       document.getElementById('zoom-title').innerText = p.name;
       document.getElementById('zoom-price').innerText = `৳${p.price}`;
       document.getElementById('zoom-old-price').innerText = `৳${p.oldPrice}`;
-      
-      const colorSelect = document.getElementById('zoom-color-select');
-      colorSelect.innerHTML = p.colors.map(c => `<option value="${c}">${c}</option>`).join('');
+
+      modalSelectedColors = [p.colors[0]];
+      const chipsBox = document.getElementById('zoom-color-chips');
+      chipsBox.innerHTML = p.colors.map(c => `
+        <span class="color-chip ${modalSelectedColors.includes(c) ? 'selected' : ''}" onclick="toggleModalColor('${c}', this)">
+          <i class="fa-solid fa-check" style="font-size:10px; display:${modalSelectedColors.includes(c) ? 'inline' : 'none'};"></i> ${c}
+        </span>
+      `).join('');
+      document.getElementById('zoom-color-summary').innerText = `সিলেক্টেড: ${modalSelectedColors.join(', ')}`;
 
       const sizeSelect = document.getElementById('zoom-size-select');
       sizeSelect.innerHTML = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
 
       document.getElementById('zoom-add-btn').onclick = function() {
-        addItemToCart(p, sizeSelect.value, colorSelect.value);
+        addItemToCart(p, sizeSelect.value, modalSelectedColors.join(' + '));
         closeModal('preview-modal');
       };
+
       document.getElementById('preview-modal').classList.add('active');
+    }
+
+    function toggleModalColor(color, chipElem) {
+      if (modalSelectedColors.includes(color)) {
+        if (modalSelectedColors.length === 1) return;
+        modalSelectedColors = modalSelectedColors.filter(c => c !== color);
+      } else {
+        if (modalSelectedColors.length >= 3) {
+          alert("সর্বোচ্চ ৩টি কালার একসাথে বাছাই করা যাবে!");
+          return;
+        }
+        modalSelectedColors.push(color);
+      }
+
+      const parent = chipElem.parentElement;
+      parent.querySelectorAll('.color-chip').forEach(c => {
+        const text = c.innerText.trim();
+        const icon = c.querySelector('i');
+        if (modalSelectedColors.includes(text)) {
+          c.classList.add('selected');
+          if (icon) icon.style.display = 'inline';
+        } else {
+          c.classList.remove('selected');
+          if (icon) icon.style.display = 'none';
+        }
+      });
+      document.getElementById('zoom-color-summary').innerText = `সিলেক্টেড: ${modalSelectedColors.join(', ')}`;
+    }
+
+    function zoomMove(e) {
+      const container = document.getElementById('zoom-container');
+      const img = document.getElementById('zoom-img');
+      const rect = container.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      img.style.transformOrigin = `${x}% ${y}%`;
+      img.style.transform = "scale(2.2)";
+    }
+
+    function zoomReset() {
+      const img = document.getElementById('zoom-img');
+      if (img) {
+        img.style.transformOrigin = "center center";
+        img.style.transform = "scale(1)";
+      }
     }
 
     function confirmOrderWhatsApp() {
@@ -352,19 +494,24 @@
       const address = document.getElementById('cust-address').value.trim();
 
       if (cart.length === 0) { alert('অনুগ্রহ করে কার্টে প্রোডাক্ট যুক্ত করুন'); return; }
-      if (!name || !phone || !address) { alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন'); return; }
+      if (!name || !phone || !address) { alert('অনুগ্রহ করে নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন'); return; }
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      let grandTotal = (totalItems === 3) ? 999 : cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
       let msg = `🛍️ *নতুন অর্ডার - ${siteSettings.name}*\n\n`;
       msg += `👤 *কাস্টমার তথ্য:*\nনাম: ${name}\nফোন: ${phone}\nঠিকানা: ${address}\n\n`;
       msg += `📦 *অর্ডারকৃত পণ্য তালিকা:*\n`;
-      let grandTotal = 0;
+      
       cart.forEach((item, i) => {
-        const total = item.price * item.qty;
-        grandTotal += total;
-        msg += `${i+1}. ${item.name}\n    কালার: ${item.color} | সাইজ: ${item.size}\n    পরিমাণ: ${item.qty} টি | মূল্য: ৳${total}\n`;
+        msg += `${i+1}. ${item.name}\n    কালার: ${item.color}\n    সাইজ: ${item.size}\n    পরিমাণ: ${item.qty} টি (নিয়মিত মূল্য: ৳${item.price * item.qty})\n`;
       });
+
+      if (totalItems === 3) {
+        msg += `\n🔥 *মেগা অফার:* ৩ সেট প্যাকেজ ডিসকাউন্ট অ্যাপ্লাইড!\n`;
+      }
       msg += `\n🚚 ডেলিভারি চার্জ: সম্পূর্ণ ফ্রি\n`;
-      msg += `💰 *সর্বমোট বিল:* ৳${grandTotal}\n\nদ্রুত অর্ডারটি কনফার্ম করুন!`;
+      msg += `💰 *সর্বমোট প্রদেয় বিল:* ৳${grandTotal}\n\nঅর্ডারটি দ্রুত কনফার্ম করার অনুরোধ রইল!`;
 
       closeModal('cart-modal');
       document.getElementById('order-success-modal').classList.add('active');
@@ -390,10 +537,7 @@
       }
     }
 
-    function openAdminLogin() {
-      document.getElementById('admin-login-modal').classList.add('active');
-    }
-
+    function openAdminLogin() { document.getElementById('admin-login-modal').classList.add('active'); }
     function closeAdminLogin() {
       document.getElementById('admin-login-modal').classList.remove('active');
       window.location.hash = '';
