@@ -34,26 +34,35 @@
     .cat-btn.active { background: var(--gold); color: #000; font-weight: 600; border-color: var(--gold); }
     
     .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); gap: 20px; }
     .product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
     .card-img-wrap { position: relative; width: 100%; height: 260px; cursor: pointer; background: #111; overflow: hidden; }
     .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
     .card-img-wrap:hover img { transform: scale(1.05); }
     .badge { position: absolute; top: 10px; left: 10px; background: #e02424; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 4px; }
+    .stock-badge-top { position: absolute; top: 10px; right: 10px; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; }
+    .in-stock-bg { background: #16a34a; color: #fff; }
+    .out-stock-bg { background: #dc2626; color: #fff; }
+
     .card-body { padding: 14px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; cursor: pointer; }
-    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+    .card-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; cursor: pointer; }
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
     .current-price { font-size: 20px; font-weight: 700; color: var(--gold); }
     .old-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
     
-    .selector-label { font-size: 12px; color: var(--gold-light); margin-bottom: 6px; font-weight: 600; }
-    .color-picker-box { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .selector-label { font-size: 12px; color: var(--gold-light); margin-bottom: 5px; font-weight: 600; }
+    .color-picker-box { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
     .color-chip { background: #22222a; border: 1px solid #444; border-radius: 4px; padding: 4px 8px; font-size: 12px; cursor: pointer; user-select: none; display: flex; align-items: center; gap: 4px; color: #bbb; transition: 0.2s; }
     .color-chip.selected { background: var(--gold); color: #000; font-weight: bold; border-color: var(--gold); }
-    .selected-summary { font-size: 12px; color: #38bdf8; margin-bottom: 10px; min-height: 18px; font-weight: 500; }
+    .selected-summary { font-size: 12px; color: #38bdf8; margin-bottom: 8px; min-height: 18px; font-weight: 500; }
 
-    .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 8px; font-size: 13px; outline: none; margin-bottom: 12px; }
+    .custom-select { width: 100%; background: #22222a; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 8px; font-size: 13px; outline: none; margin-bottom: 8px; }
+    .stock-status-line { font-size: 12.5px; font-weight: 600; margin-bottom: 10px; padding: 5px 8px; border-radius: 5px; background: #1d1d24; border: 1px solid #2b2b36; }
+    .status-available { color: #4ade80; }
+    .status-unavailable { color: #f87171; }
+
     .add-to-cart-btn { background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: auto; }
+    .add-to-cart-btn:disabled { background: #3f3f46; color: #9ca3af; cursor: not-allowed; }
     
     /* ফুটার ও ট্রাস্ট সেকশন */
     .trust-section { background: #111116; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 40px 16px; margin-top: 50px; }
@@ -76,7 +85,7 @@
     /* মোডাল স্টাইল */
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
     .modal.active { display: flex; }
-    .modal-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; max-width: 540px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; position: relative; }
+    .modal-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; position: relative; }
     .close-btn { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 22px; color: var(--text-muted); cursor: pointer; }
     
     .zoom-container { width: 100%; height: 320px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #111; cursor: crosshair; position: relative; }
@@ -95,6 +104,14 @@
     .btn-edit:hover { background: #0369a1; }
     .btn-del { background: #e02424; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
     .btn-del:hover { background: #b91c1c; }
+
+    /* স্টক ম্যাট্রিক্স টেবিল */
+    .stock-matrix-wrap { max-height: 250px; overflow-y: auto; border: 1px solid #333; border-radius: 8px; margin-bottom: 14px; background: #111115; }
+    .stock-table { width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: center; }
+    .stock-table th, .stock-table td { border: 1px solid #2a2a35; padding: 6px 8px; }
+    .stock-table th { background: #1f1f27; color: var(--gold); position: sticky; top: 0; z-index: 5; }
+    .stock-table tr:nth-child(even) { background: #16161d; }
+    .stock-checkbox { width: 16px; height: 16px; accent-color: #22c55e; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -114,7 +131,7 @@
 
   <div class="banner">
     <h1 id="banner-head">বাচ্চাদের এক্সক্লুসিভ কালেকশন</h1>
-    <p>১ থেকে ৮ বছরের সেরা ও আরামদায়ক পোশাকের সমাহার</p>
+    <p>১ থেকে ১২ বছরের সেরা ও আরামদায়ক পোশাকের সমাহার</p>
     <div class="offer-banner"><i class="fa-solid fa-fire"></i> ৩টি যেকোনো প্রোডাক্ট কার্টে নিলেই স্পেশাল অফার ৯৯৯ টাকা + ফ্রি ডেলিভারি!</div>
   </div>
 
@@ -242,8 +259,10 @@
       <div class="color-picker-box" id="zoom-color-chips"></div>
       <div class="selected-summary" id="zoom-color-summary"></div>
 
-      <div class="selector-label">সাইজ (বয়স অনুযায়ী):</div>
+      <div class="selector-label">বয়স নির্বাচন করুন (১ থেকে ১২ বছর):</div>
       <select class="custom-select" id="zoom-size-select"></select>
+
+      <div class="stock-status-line" id="zoom-stock-line"></div>
 
       <button class="add-to-cart-btn" id="zoom-add-btn">কার্টে যোগ করুন</button>
     </div>
@@ -263,14 +282,14 @@
 
   <!-- অ্যাডমিন ড্যাশবোর্ড মোডাল -->
   <div class="modal" id="admin-dash-modal">
-    <div class="modal-box" style="max-width:650px;">
+    <div class="modal-box" style="max-width:680px;">
       <button class="close-btn" onclick="adminLogout()"><i class="fa-solid fa-xmark"></i></button>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #333; padding-bottom:10px;">
         <h3 style="color:var(--gold);">অ্যাডমিন ড্যাশবোর্ড</h3>
         <button onclick="adminLogout()" style="background:#e02424; color:#fff; border:none; padding:4px 10px; border-radius:4px; cursor:pointer;">লগআউট</button>
       </div>
 
-      <details open style="margin-bottom:16px;">
+      <details style="margin-bottom:16px;">
         <summary style="color:var(--gold-light); cursor:pointer; font-weight:600; margin-bottom:8px;">ওয়েবসাইট তথ্য পরিবর্তন করুন</summary>
         <input type="text" id="adm-site-name" class="cart-input" placeholder="শপের নাম">
         <input type="text" id="adm-hotline" class="cart-input" placeholder="হটলাইন নম্বর">
@@ -279,31 +298,37 @@
         <button class="add-to-cart-btn" style="margin-bottom:12px;" onclick="saveSiteSettings()">তথ্য সেভ করুন</button>
       </details>
 
-      <details style="margin-bottom:16px;">
-        <summary style="color:var(--gold-light); cursor:pointer; font-weight:600; margin-bottom:8px;">নতুন প্রোডাক্ট যোগ করুন</summary>
+      <details open style="margin-bottom:16px;">
+        <summary style="color:var(--gold-light); cursor:pointer; font-weight:600; margin-bottom:8px;">নতুন প্রোডাক্ট ও স্টক যোগ করুন</summary>
         <input type="text" id="new-prod-name" class="cart-input" placeholder="প্রোডাক্টের নাম">
         <select id="new-prod-cat" class="custom-select" style="margin-bottom:10px;">
           <option value="ছেলে বাবু">ছেলে বাবু</option>
           <option value="মেয়ে বাবু">মেয়ে বাবু</option>
           <option value="নতুন কালেকশন">নতুন কালেকশন</option>
         </select>
-        <input type="number" id="new-prod-price" class="cart-input" placeholder="বিক্রয় মূল্য (৳)">
-        <input type="number" id="new-prod-oldprice" class="cart-input" placeholder="আগের মূল্য (৳)">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <input type="number" id="new-prod-price" class="cart-input" placeholder="বিক্রয় মূল্য (৳)">
+          <input type="number" id="new-prod-oldprice" class="cart-input" placeholder="আগের মূল্য (৳)">
+        </div>
         <input type="text" id="new-prod-img" class="cart-input" placeholder="ছবির ডিরেক্ট URL (Image Link)">
-        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল, হলুদ, কালো)">
-        <button class="add-to-cart-btn" onclick="addNewProduct()">প্রোডাক্ট যুক্ত করুন</button>
+        <input type="text" id="new-prod-colors" class="cart-input" placeholder="রঙের নাম (কমা দিয়ে লিখুন, যেমন: লাল, নীল, কালো)" oninput="renderNewProductStockGrid()">
+        
+        <div class="selector-label" style="margin-top:4px;">স্টক নির্ধারণ করুন (টিক দেওয়া থাকলে স্টকে আছে):</div>
+        <div class="stock-matrix-wrap" id="new-stock-matrix"></div>
+
+        <button class="add-to-cart-btn" onclick="addNewProduct()">প্রোডাক্ট ও স্টক যুক্ত করুন</button>
       </details>
 
-      <div style="color:var(--gold-light); font-weight:600; margin-bottom:10px;">বিদ্যমান প্রোডাক্ট তালিকা:</div>
+      <div style="color:var(--gold-light); font-weight:600; margin-bottom:10px;">বিদ্যমান প্রোডাক্ট ও স্টক তালিকা:</div>
       <div id="admin-prod-list"></div>
     </div>
   </div>
 
-  <!-- প্রোডাক্ট এডিট মোডাল -->
+  <!-- প্রোডাক্ট ও স্টক এডিট মোডাল -->
   <div class="modal" id="edit-prod-modal" style="z-index: 1050;">
-    <div class="modal-box" style="max-width:500px;">
+    <div class="modal-box" style="max-width:600px;">
       <button class="close-btn" onclick="closeModal('edit-prod-modal')"><i class="fa-solid fa-xmark"></i></button>
-      <h3 style="color:var(--gold); margin-bottom:14px; text-align:center;">প্রোডাক্ট এডিট করুন</h3>
+      <h3 style="color:var(--gold); margin-bottom:14px; text-align:center;">প্রোডাক্ট ও স্টক এডিট করুন</h3>
       <input type="hidden" id="edit-prod-id">
       
       <div class="selector-label">প্রোডাক্টের নাম:</div>
@@ -331,24 +356,63 @@
       <input type="text" id="edit-prod-img" class="cart-input">
 
       <div class="selector-label">রঙের তালিকা (কমা দিয়ে লিখুন):</div>
-      <input type="text" id="edit-prod-colors" class="cart-input" placeholder="যেমন: লাল, নীল, সাদা">
+      <input type="text" id="edit-prod-colors" class="cart-input" oninput="renderEditProductStockGrid()">
+
+      <div class="selector-label">বয়স ও কালার অনুযায়ী স্টক কন্ট্রোল (টিক = স্টকে আছে):</div>
+      <div class="stock-matrix-wrap" id="edit-stock-matrix"></div>
 
       <button class="add-to-cart-btn" style="background:#0284c7; color:#fff; margin-top:8px;" onclick="saveEditedProduct()">
-        <i class="fa-solid fa-floppy-disk"></i> পরিবর্তন সংরক্ষণ করুন
+        <i class="fa-solid fa-floppy-disk"></i> পরিবর্তন ও স্টক সংরক্ষণ করুন
       </button>
     </div>
   </div>
 
   <script>
-    const defaultProducts = [
-      { id: 1, name: "প্রিমিয়াম বেবি পার্টি ফ্রক", category: "মেয়ে বাবু", price: 850, oldPrice: 1100, image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&q=80", colors: ["গোলাপী", "মেরুন", "সাদা", "হলুদ"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 2, name: "ছেলেদের প্রিন্টেড শার্ট ও প্যান্ট সেট", category: "ছেলে বাবু", price: 950, oldPrice: 1250, image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&q=80", colors: ["গাঢ় নীল", "কালো", "ছাই", "লাল"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 3, name: "৩-পিস এক্সক্লুসিভ কটন সেট", category: "নতুন কালেকশন", price: 1200, oldPrice: 1500, image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=700&q=80", colors: ["হলুদ", "নীল", "সবুজ", "কমলা"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 4, name: "৩ পিস টি-শার্ট + ৩ পিস পায়জামা", category: "ছেলে বাবু", price: 999, oldPrice: 1350, image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&q=80", colors: ["কালো", "নীল", "ছাই"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] },
-      { id: 5, name: "টি-শার্ট + পায়জামা", category: "ছেলে বাবু", price: 449, oldPrice: 650, image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=700&q=80", colors: ["কালো", "হলুদ"], sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"] }
+    // ১ থেকে ১২ বছর পর্যন্ত একক বয়স তালিকা
+    const ALL_AGES = [
+      "১ বছর", "২ বছর", "৩ বছর", "৪ বছর", "৫ বছর", "৬ বছর",
+      "৭ বছর", "৮ বছর", "৯ বছর", "১০ বছর", "১১ বছর", "১২ বছর"
     ];
 
-    let products = JSON.parse(localStorage.getItem('rufayda_products')) || defaultProducts;
+    function buildDefaultStock(colors) {
+      let stock = {};
+      ALL_AGES.forEach(age => {
+        stock[age] = {};
+        colors.forEach(col => {
+          stock[age][col] = true;
+        });
+      });
+      return stock;
+    }
+
+    const defaultProducts = [
+      {
+        id: 1, name: "প্রিমিয়াম বেবি পার্টি ফ্রক", category: "মেয়ে বাবু", price: 850, oldPrice: 1100,
+        image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&q=80",
+        colors: ["গোলাপী", "মেরুন", "সাদা"], sizes: ALL_AGES,
+        stock: buildDefaultStock(["গোলাপী", "মেরুন", "সাদা"])
+      },
+      {
+        id: 2, name: "ছেলেদের প্রিন্টেড শার্ট ও প্যান্ট সেট", category: "ছেলে বাবু", price: 950, oldPrice: 1250,
+        image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&q=80",
+        colors: ["গাঢ় নীল", "কালো", "ছাই"], sizes: ALL_AGES,
+        stock: buildDefaultStock(["গাঢ় নীল", "কালো", "ছাই"])
+      },
+      {
+        id: 3, name: "৩-পিস এক্সক্লুসিভ কটন সেট", category: "নতুন কালেকশন", price: 1200, oldPrice: 1500,
+        image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=700&q=80",
+        colors: ["হলুদ", "নীল", "সবুজ"], sizes: ALL_AGES,
+        stock: buildDefaultStock(["হলুদ", "নীল", "সবুজ"])
+      }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('rufayda_products_v2')) || defaultProducts;
+    // মাইগ্রেশন নিশ্চিত করা যাতে পুরোনো প্রোডাক্টে ১-১২ বছর ও stock অবজেক্ট থাকে
+    products.forEach(p => {
+      p.sizes = ALL_AGES;
+      if (!p.stock) p.stock = buildDefaultStock(p.colors);
+    });
+
     let siteSettings = JSON.parse(localStorage.getItem('rufayda_settings')) || {
       name: "রুফাইদা অনলাইন শপ",
       hotline: "01335976268",
@@ -380,6 +444,52 @@
       document.getElementById('cur-year').innerText = new Date().getFullYear();
     }
 
+    // কোনো প্রোডাক্টের নির্দিষ্ট বয়স ও নির্বাচিত কালারগুলোর স্টক স্ট্যাটাস চেক
+    function checkVariantStock(prod, age, selectedCols) {
+      if (!prod.stock || !prod.stock[age]) return { available: true, outColors: [] };
+      let outColors = [];
+      selectedCols.forEach(c => {
+        if (prod.stock[age][c] === false) {
+          outColors.push(c);
+        }
+      });
+      return {
+        available: outColors.length === 0,
+        outColors: outColors
+      };
+    }
+
+    function updateCardStockUI(prodId) {
+      const p = products.find(x => x.id === prodId);
+      if (!p) return;
+      const ageSelect = document.getElementById(`size-select-${prodId}`);
+      const statusLine = document.getElementById(`stock-line-${prodId}`);
+      const addBtn = document.getElementById(`add-btn-${prodId}`);
+      const topBadge = document.getElementById(`top-stock-badge-${prodId}`);
+
+      const selectedAge = ageSelect ? ageSelect.value : ALL_AGES[0];
+      const selectedCols = cardSelectedColors[prodId] || [p.colors[0]];
+      const check = checkVariantStock(p, selectedAge, selectedCols);
+
+      if (check.available) {
+        statusLine.innerHTML = `<span class="status-available"><i class="fa-solid fa-circle-check"></i> ${selectedAge} (${selectedCols.join(', ')}) স্টকে আছে</span>`;
+        if (topBadge) {
+          topBadge.className = "stock-badge-top in-stock-bg";
+          topBadge.innerText = "স্টকে আছে";
+        }
+        addBtn.disabled = false;
+        addBtn.innerHTML = `<i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন`;
+      } else {
+        statusLine.innerHTML = `<span class="status-unavailable"><i class="fa-solid fa-circle-xmark"></i> ${selectedAge} - ${check.outColors.join(', ')} কালার স্টক শেষ</span>`;
+        if (topBadge) {
+          topBadge.className = "stock-badge-top out-stock-bg";
+          topBadge.innerText = "স্টক শেষ";
+        }
+        addBtn.disabled = true;
+        addBtn.innerHTML = `<i class="fa-solid fa-ban"></i> স্টক শেষ (অর্ডার সম্ভব নয়)`;
+      }
+    }
+
     function renderProducts() {
       const container = document.getElementById('product-container');
       container.innerHTML = '';
@@ -395,6 +505,7 @@
         card.innerHTML = `
           <div class="card-img-wrap" onclick="openZoomPreview(${p.id})">
             <span class="badge">${discount}% ছাড়</span>
+            <span class="stock-badge-top in-stock-bg" id="top-stock-badge-${p.id}">স্টকে আছে</span>
             <img src="${p.image}" alt="${p.name}">
           </div>
           <div class="card-body">
@@ -414,17 +525,20 @@
             </div>
             <div class="selected-summary" id="card-color-summary-${p.id}">সিলেক্টেড: ${cardSelectedColors[p.id].join(', ')}</div>
 
-            <div class="selector-label">সাইজ (বয়স অনুযায়ী):</div>
-            <select class="custom-select" id="size-select-${p.id}">
-              ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+            <div class="selector-label">বয়স নির্বাচন করুন (১ থেকে ১২ বছর):</div>
+            <select class="custom-select" id="size-select-${p.id}" onchange="updateCardStockUI(${p.id})">
+              ${ALL_AGES.map(s => `<option value="${s}">${s}</option>`).join('')}
             </select>
 
-            <button class="add-to-cart-btn" onclick="addToCartDirect(${p.id})">
+            <div class="stock-status-line" id="stock-line-${p.id}"></div>
+
+            <button class="add-to-cart-btn" id="add-btn-${p.id}" onclick="addToCartDirect(${p.id})">
               <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
             </button>
           </div>
         `;
         container.appendChild(card);
+        updateCardStockUI(p.id);
       });
     }
 
@@ -464,6 +578,7 @@
       if (summaryElem) {
         summaryElem.innerText = `সিলেক্টেড: ${cardSelectedColors[prodId].join(', ')}`;
       }
+      updateCardStockUI(prodId);
     }
 
     function filterCategory(cat, btn) {
@@ -477,6 +592,11 @@
       const p = products.find(x => x.id === id);
       const size = document.getElementById(`size-select-${id}`).value;
       const colors = (cardSelectedColors[id] && cardSelectedColors[id].length) ? cardSelectedColors[id] : [p.colors[0]];
+      const check = checkVariantStock(p, size, colors);
+      if (!check.available) {
+        alert("দুঃখিত, নির্বাচিত বয়স ও কালারটি বর্তমানে স্টক শেষ!");
+        return;
+      }
       addItemToCart(p, size, colors.join(' + '));
     }
 
@@ -519,7 +639,7 @@
           <div style="flex-grow:1;">
             <div style="font-weight:600; font-size:14px;">${item.name}</div>
             <div style="font-size:12px; color:var(--gold-light);">কালার: ${item.color}</div>
-            <div style="font-size:12px; color:var(--text-muted);">সাইজ: ${item.size}</div>
+            <div style="font-size:12px; color:var(--text-muted);">বয়স/সাইজ: ${item.size}</div>
             <div style="font-size:13px; color:var(--gold); margin-top:2px;">৳${item.price} × ${item.qty}</div>
           </div>
           <button onclick="removeCartItem(${idx})" style="background:none; border:none; color:#e02424; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
@@ -535,9 +655,31 @@
     function openCart() { document.getElementById('cart-modal').classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
+    // জুম প্রিভিউ মোডাল
     let modalSelectedColors = [];
+    let currentModalProduct = null;
+
+    function updateModalStockUI() {
+      if (!currentModalProduct) return;
+      const age = document.getElementById('zoom-size-select').value;
+      const statusLine = document.getElementById('zoom-stock-line');
+      const addBtn = document.getElementById('zoom-add-btn');
+      const check = checkVariantStock(currentModalProduct, age, modalSelectedColors);
+
+      if (check.available) {
+        statusLine.innerHTML = `<span class="status-available"><i class="fa-solid fa-circle-check"></i> ${age} (${modalSelectedColors.join(', ')}) স্টকে আছে</span>`;
+        addBtn.disabled = false;
+        addBtn.innerText = "কার্টে যোগ করুন";
+      } else {
+        statusLine.innerHTML = `<span class="status-unavailable"><i class="fa-solid fa-circle-xmark"></i> ${age} - ${check.outColors.join(', ')} কালার স্টক শেষ</span>`;
+        addBtn.disabled = true;
+        addBtn.innerText = "স্টক শেষ (অর্ডার সম্ভব নয়)";
+      }
+    }
+
     function openZoomPreview(id) {
       const p = products.find(x => x.id === id);
+      currentModalProduct = p;
       const img = document.getElementById('zoom-img');
       img.src = p.image;
       zoomReset();
@@ -556,9 +698,14 @@
       document.getElementById('zoom-color-summary').innerText = `সিলেক্টেড: ${modalSelectedColors.join(', ')}`;
 
       const sizeSelect = document.getElementById('zoom-size-select');
-      sizeSelect.innerHTML = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
+      sizeSelect.innerHTML = ALL_AGES.map(s => `<option value="${s}">${s}</option>`).join('');
+      sizeSelect.onchange = updateModalStockUI;
+
+      updateModalStockUI();
 
       document.getElementById('zoom-add-btn').onclick = function() {
+        const check = checkVariantStock(p, sizeSelect.value, modalSelectedColors);
+        if (!check.available) return;
         addItemToCart(p, sizeSelect.value, modalSelectedColors.join(' + '));
         closeModal('preview-modal');
       };
@@ -591,6 +738,7 @@
         }
       });
       document.getElementById('zoom-color-summary').innerText = `সিলেক্টেড: ${modalSelectedColors.join(', ')}`;
+      updateModalStockUI();
     }
 
     function zoomMove(e) {
@@ -629,7 +777,7 @@
       cart.forEach((item, i) => {
         msg += `${i+1}. *${item.name}*\n`;
         msg += `   🎨 কালার: ${item.color}\n`;
-        msg += `   📏 সাইজ: ${item.size}\n`;
+        msg += `   📏 বয়স/সাইজ: ${item.size}\n`;
         msg += `   🔢 পরিমাণ: ${item.qty} টি (মূল্য: ৳${item.price * item.qty})\n`;
         msg += `   🖼️ ডিজাইন ছবি: ${item.image}\n\n`;
       });
@@ -652,6 +800,52 @@
         cart = [];
         updateCartUI();
       }, 1500);
+    }
+
+    // স্টক ম্যাট্রিক্স টেবিল তৈরি (অ্যাডমিন প্যানেলের জন্য)
+    function generateStockMatrixHTML(colors, existingStock, prefix) {
+      if (!colors || colors.length === 0) {
+        return `<p style="padding:12px; color:var(--text-muted); font-size:13px;">প্রথমে রঙের নাম লিখুন, তারপর স্টক তালিকা আসবে।</p>`;
+      }
+      let html = `<table class="stock-table"><thead><tr><th>বয়স</th>`;
+      colors.forEach(c => { html += `<th>${c}</th>`; });
+      html += `</tr></thead><tbody>`;
+
+      ALL_AGES.forEach(age => {
+        html += `<tr><td style="font-weight:600; color:var(--gold-light);">${age}</td>`;
+        colors.forEach(col => {
+          const isChecked = (existingStock && existingStock[age] && existingStock[age][col] !== undefined) 
+                            ? existingStock[age][col] : true;
+          html += `<td><input type="checkbox" class="stock-checkbox" data-prefix="${prefix}" data-age="${age}" data-color="${col}" ${isChecked ? 'checked' : ''}></td>`;
+        });
+        html += `</tr>`;
+      });
+      html += `</tbody></table>`;
+      return html;
+    }
+
+    function readStockFromMatrix(prefix, colors) {
+      let stock = {};
+      ALL_AGES.forEach(age => {
+        stock[age] = {};
+        colors.forEach(col => {
+          const cb = document.querySelector(`input.stock-checkbox[data-prefix="${prefix}"][data-age="${age}"][data-color="${col}"]`);
+          stock[age][col] = cb ? cb.checked : true;
+        });
+      });
+      return stock;
+    }
+
+    function renderNewProductStockGrid() {
+      const rawColors = document.getElementById('new-prod-colors').value;
+      const colors = rawColors.split(',').map(c => c.trim()).filter(Boolean);
+      document.getElementById('new-stock-matrix').innerHTML = generateStockMatrixHTML(colors, null, 'new');
+    }
+
+    function renderEditProductStockGrid(existingStock) {
+      const rawColors = document.getElementById('edit-prod-colors').value;
+      const colors = rawColors.split(',').map(c => c.trim()).filter(Boolean);
+      document.getElementById('edit-stock-matrix').innerHTML = generateStockMatrixHTML(colors, existingStock, 'edit');
     }
 
     function checkHashRoute() {
@@ -690,6 +884,7 @@
       document.getElementById('adm-hotline').value = siteSettings.hotline;
       document.getElementById('adm-whatsapp').value = siteSettings.whatsapp;
       document.getElementById('adm-delivery').value = siteSettings.delivery;
+      renderNewProductStockGrid();
       renderAdminProducts();
       document.getElementById('admin-dash-modal').classList.add('active');
     }
@@ -716,9 +911,12 @@
       const price = Number(document.getElementById('new-prod-price').value);
       const oldPrice = Number(document.getElementById('new-prod-oldprice').value);
       const img = document.getElementById('new-prod-img').value.trim();
-      const colors = document.getElementById('new-prod-colors').value.split(',').map(c => c.trim()).filter(Boolean);
+      let colors = document.getElementById('new-prod-colors').value.split(',').map(c => c.trim()).filter(Boolean);
 
       if (!name || !price || !img) { alert('অনুগ্রহ করে নাম, মূল্য এবং ছবির লিংক পূরণ করুন'); return; }
+      if (colors.length === 0) colors = ["কমন"];
+
+      const stockData = readStockFromMatrix('new', colors);
 
       const newP = {
         id: Date.now(),
@@ -727,26 +925,30 @@
         price,
         oldPrice: oldPrice || price,
         image: img,
-        colors: colors.length ? colors : ["কমন"],
-        sizes: ["১-২ বছর", "২-৩ বছর", "৩-৪ বছর", "৪-৫ বছর", "৫-৬ বছর", "৬-৭ বছর", "৭-৮ বছর"]
+        colors: colors,
+        sizes: ALL_AGES,
+        stock: stockData
       };
 
       products.push(newP);
-      localStorage.setItem('rufayda_products', JSON.stringify(products));
+      localStorage.setItem('rufayda_products_v2', JSON.stringify(products));
       renderProducts();
       renderAdminProducts();
-      alert('নতুন প্রোডাক্ট যুক্ত হয়েছে!');
+      alert('নতুন প্রোডাক্ট ও স্টক সফলভাবে যুক্ত হয়েছে!');
       
       document.getElementById('new-prod-name').value = '';
       document.getElementById('new-prod-price').value = '';
       document.getElementById('new-prod-oldprice').value = '';
       document.getElementById('new-prod-img').value = '';
       document.getElementById('new-prod-colors').value = '';
+      renderNewProductStockGrid();
     }
 
+    let editingStockRef = null;
     function editProduct(id) {
       const p = products.find(item => item.id === id);
       if (!p) return;
+      editingStockRef = p.stock;
 
       document.getElementById('edit-prod-id').value = p.id;
       document.getElementById('edit-prod-name').value = p.name;
@@ -756,6 +958,7 @@
       document.getElementById('edit-prod-img').value = p.image;
       document.getElementById('edit-prod-colors').value = p.colors.join(', ');
 
+      renderEditProductStockGrid(p.stock);
       document.getElementById('edit-prod-modal').classList.add('active');
     }
 
@@ -769,33 +972,38 @@
       const price = Number(document.getElementById('edit-prod-price').value);
       const oldPrice = Number(document.getElementById('edit-prod-oldprice').value);
       const img = document.getElementById('edit-prod-img').value.trim();
-      const colors = document.getElementById('edit-prod-colors').value.split(',').map(c => c.trim()).filter(Boolean);
+      let colors = document.getElementById('edit-prod-colors').value.split(',').map(c => c.trim()).filter(Boolean);
 
       if (!name || !price || !img) {
         alert('অনুগ্রহ করে নাম, মূল্য এবং ছবির লিংক পূরণ করুন');
         return;
       }
+      if (colors.length === 0) colors = ["কমন"];
+
+      const updatedStock = readStockFromMatrix('edit', colors);
 
       p.name = name;
       p.category = cat;
       p.price = price;
       p.oldPrice = oldPrice || price;
       p.image = img;
-      p.colors = colors.length ? colors : ["কমন"];
+      p.colors = colors;
+      p.sizes = ALL_AGES;
+      p.stock = updatedStock;
 
       cardSelectedColors[id] = [p.colors[0]];
 
-      localStorage.setItem('rufayda_products', JSON.stringify(products));
+      localStorage.setItem('rufayda_products_v2', JSON.stringify(products));
       renderProducts();
       renderAdminProducts();
       closeModal('edit-prod-modal');
-      alert('প্রোডাক্ট সফলভাবে আপডেট করা হয়েছে!');
+      alert('প্রোডাক্ট ও স্টক সফলভাবে আপডেট করা হয়েছে!');
     }
 
     function deleteProduct(id) {
       if (confirm('আপনি কি নিশ্চিত এই প্রোডাক্টটি ডিলিট করতে চান?')) {
         products = products.filter(p => p.id !== id);
-        localStorage.setItem('rufayda_products', JSON.stringify(products));
+        localStorage.setItem('rufayda_products_v2', JSON.stringify(products));
         renderProducts();
         renderAdminProducts();
       }
@@ -808,10 +1016,11 @@
           <div>
             <strong>${p.name}</strong> 
             <span style="color:var(--gold); font-size:13px; margin-left:6px;">(৳${p.price})</span>
+            <div style="font-size:11.5px; color:var(--text-muted);">কালার: ${p.colors.join(', ')}</div>
           </div>
           <div class="btn-action-group">
             <button class="btn-edit" onclick="editProduct(${p.id})">
-              <i class="fa-solid fa-pen-to-square"></i> এডিট
+              <i class="fa-solid fa-pen-to-square"></i> এডিট ও স্টক
             </button>
             <button class="btn-del" onclick="deleteProduct(${p.id})">
               <i class="fa-solid fa-trash"></i> ডিলিট
